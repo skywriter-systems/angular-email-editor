@@ -31,16 +31,26 @@ export class EmailEditorComponent implements OnInit, AfterViewInit {
   @Input() minHeight = '500px';
 
   @Output() loaded = new EventEmitter();
+  
+  var counter = 0;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(counter , "counter");
+    console.log("********************** forked ***************************");
+    if(counter === 0){
+        
     const unlayerScript = document.createElement('script');
     unlayerScript.setAttribute('src', '//editor.unlayer.com/embed.js');
     unlayerScript.onload = () => {
       this.loadEditor();
     };
     document.head.appendChild(unlayerScript);
+    }else{
+      this.loadEditor();
+    }
+    counter++;
   }
 
   ngAfterViewInit() {
